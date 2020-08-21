@@ -4,6 +4,7 @@ require_relative 'lib/modules/month-module'
 require_relative 'lib/modules/projects-module'
 require_relative 'lib/modules/collections-module'
 require_relative 'lib/modules/build-module'
+require_relative 'lib/modules/edition-module'
 
 def register_default_modules(module_register)
   module_register.register(DayModule.new)
