@@ -11,6 +11,7 @@ def register_default_modules(module_register)
   module_register.register(ProjectsModule.new)
   module_register.register(CollectionsModule.new)
   module_register.register(BuildModule.new)
+  module_register.register(EditionModule.new)
 end
 
 module_register = ModuleRegister.new
