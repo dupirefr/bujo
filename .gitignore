@@ -1,4 +1,6 @@
-*.adoc
+# BuJo
+src/
+target/
 
 # IDE
 .idea
