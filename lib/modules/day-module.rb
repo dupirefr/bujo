@@ -12,12 +12,12 @@ class DayModule < Module
         OptionBuilder.new
             .with_name("today")
             .with_description("Create an entry for today in the journal")
-            .with_action(-> { create_today })
+            .with_action(-> { DayModule.create_today })
             .build,
         OptionBuilder.new
             .with_name("tomorrow")
             .with_description("Create an entry for tomorrow in the journal")
-            .with_action(-> { create_tomorrow })
+            .with_action(-> { DayModule.create_tomorrow })
             .build
     ])
   end

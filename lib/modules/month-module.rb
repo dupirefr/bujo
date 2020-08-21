@@ -12,12 +12,12 @@ class MonthModule < Module
         OptionBuilder.new
             .with_name("this-month")
             .with_description("Create an entry for this month in the journal")
-            .with_action(-> { create_this_month })
+            .with_action(-> { MonthModule.create_this_month })
             .build,
         OptionBuilder.new
             .with_name("next-month")
             .with_description("Create an entry for next month in the journal")
-            .with_action(-> { create_next_month })
+            .with_action(-> { MonthModule.create_next_month })
             .build
     ])
   end
