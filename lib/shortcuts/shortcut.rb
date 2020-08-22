@@ -11,7 +11,7 @@ class Shortcut
 
   def create
     puts("* #{@name} link: #{@source} --> #{@target}")
-    FileUtils.copy("target/#{@source}", "target/#{@target}")
+    FileUtils.copy("target/#{@source}", "target/#{@target}") if (File.exist?("target/#{@source}"))
   end
 
   def to_s
