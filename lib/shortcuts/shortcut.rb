@@ -1,20 +1,22 @@
-require 'fileutils'
+module Shortcuts
+  require 'fileutils'
 
-class Shortcut
-  attr_reader :name, :source, :target
+  class Shortcut
+    attr_reader :name, :source, :target
 
-  def initialize(name, source, target)
-    @name = name
-    @source = source
-    @target = target
-  end
+    def initialize(name, source, target)
+      @name = name
+      @source = source
+      @target = target
+    end
 
-  def create
-    puts("* #{@name} link: #{@source} --> #{@target}")
-    FileUtils.copy("target/#{@source}", "target/#{@target}") if (File.exist?("target/#{@source}"))
-  end
+    def create
+      puts("* #{@name} link: #{@source} --> #{@target}")
+      FileUtils.copy("target/#{@source}", "target/#{@target}") if (File.exist?("target/#{@source}"))
+    end
 
-  def to_s
-    "#{@name}: #{@source} --> #{@target}"
+    def to_s
+      "#{@name}: #{@source} --> #{@target}"
+    end
   end
 end
