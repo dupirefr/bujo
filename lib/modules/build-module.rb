@@ -44,7 +44,7 @@ class BuildModule < Module
 
   private def build_journal
     puts "Cleaning target..."
-    FileUtils.remove_dir("target")
+    FileUtils.remove_dir("target") if File.exist?("target")
 
     configuration = YAML.load_file("bujo.yaml")
     asciidoctor_command = "asciidoctor -R src -D target '**/*.adoc'"
