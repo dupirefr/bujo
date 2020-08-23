@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'yaml'
 
 require_relative 'module'
 require_relative 'day-module'
