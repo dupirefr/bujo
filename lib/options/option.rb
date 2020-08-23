@@ -1,12 +1,12 @@
 module Options
   class Option
-    attr_reader :short_name, :long_name, :description, :valued, :action, :shortcuts
+    attr_reader :short_name, :long_name, :description, :action, :shortcuts
 
     private def initialize(short_name, long_name, description, valued, action, shortcuts)
       @short_name = short_name
       @long_name = long_name
       @description = description
-      @valued = valued
+      @value_type = valued
       @action = action
       @shortcuts = shortcuts
     end
@@ -15,7 +15,11 @@ module Options
       Builder.new
     end
 
-    private class Builder
+    def valued
+      not @value_type.nil?
+    end
+
+    class Builder
       def initialize
         @shortcuts = []
       end
@@ -31,8 +35,8 @@ module Options
         self
       end
 
-      def valued
-        @valued = true
+      def valued(value_type = String)
+        @value_type = value_type
         self
       end
 
@@ -47,7 +51,7 @@ module Options
       end
 
       def build
-        Option.new(@short_name, @long_name, @description, @valued, @action, @shortcuts)
+        Option.new(@short_name, @long_name, @description, @value_type, @action, @shortcuts)
       end
     end
   end

@@ -1,4 +1,13 @@
 module Plugins
+  # Ruby
+  require 'fileutils'
+
+  # Own
+  require_relative 'plugin'
+  require_relative '../options/option'
+
+  include Options
+
   class ProjectsPlugin < Plugin
     def initialize
       super("projects", [

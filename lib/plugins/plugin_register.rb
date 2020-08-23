@@ -2,6 +2,14 @@ module Plugins
   # Ruby
   require 'optparse'
 
+  # Own
+  require_relative 'day_plugin'
+  require_relative 'month_plugin'
+  require_relative 'projects_plugin'
+  require_relative 'collections_plugin'
+  require_relative 'build_plugin'
+  require_relative 'edition_plugin'
+
   class PluginRegister
     private def initialize(plugins)
       @plugins = plugins

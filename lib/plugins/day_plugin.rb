@@ -2,6 +2,12 @@ module Plugins
   # Ruby
   require 'fileutils'
 
+  # Own
+  require_relative 'plugin'
+  require_relative '../options/option'
+
+  include Options
+
   class DayPlugin < Plugin
     def initialize
       super("day", [

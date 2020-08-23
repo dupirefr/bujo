@@ -6,4 +6,5 @@ Gem::Specification.new do |spec|
   spec.authors = ["dupire.francois+pro@gmail.com"]
   spec.require_paths = ["lib"]
   spec.files = ["lib/bujo.rb"]
+  spec.executables << 'bujo'
 end

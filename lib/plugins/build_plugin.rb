@@ -2,6 +2,17 @@ module Plugins
   # Ruby
   require 'fileutils'
 
+  # Own
+  require_relative 'plugin'
+  require_relative '../options/option'
+  require_relative '../shortcuts/today_shortcut'
+  require_relative '../shortcuts/this_month_shortcut'
+  require_relative '../utils/configuration'
+
+  include Options
+  include Shortcuts
+  include Utils
+
   class BuildPlugin < Plugin
     def initialize
       super("build", [
@@ -41,7 +52,7 @@ module Plugins
       FileUtils.remove_dir("target") if File.exist?("target")
 
       puts "Converting to HTML..."
-      %x("asciidoctor #{Configuration.instance.style.command}-R src -D target '**/*.adoc'")
+      %x(asciidoctor #{Configuration.load.style.command}-R src -D target '**/*.adoc')
     end
   end
 end

@@ -1,5 +1,17 @@
 module Plugins
+  # Ruby
   require 'fileutils'
+
+  # Own
+  require_relative 'plugin'
+  require_relative '../options/option'
+  require_relative '../shortcuts/today_shortcut'
+  require_relative '../shortcuts/this_month_shortcut'
+  require_relative '../utils/configuration'
+
+  include Options
+  include Shortcuts
+  include Utils
 
   class EditionPlugin < Plugin
     def initialize
@@ -20,7 +32,7 @@ module Plugins
       system("vim #{file}")
 
       puts "Converting to HTML..."
-      %x(asciidoctor #{Configuration.instance.style.command}-R src -D target '#{file}')
+      %x(asciidoctor #{Configuration.load.style.command}-R src -D target '#{file}')
     end
   end
 end

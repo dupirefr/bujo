@@ -1,17 +1,19 @@
 module Utils
-  require 'singleton'
   gem 'psych'
   require 'psych'
 
   class Configuration
-    include Singleton
     attr_reader :style
 
-    private def initialize
-      super
+    private def initialize(style)
+      @style = style
+    end
 
-      yaml = Psych.load_file("bujo.yaml")
-      @style = Style.parse(yaml['style'])
+    def self.load(filename = "bujo.yaml")
+      yaml = Psych.load_file(filename)
+      style = Style.parse(yaml['style'])
+
+      Configuration.new(style)
     end
   end
 
@@ -25,7 +27,7 @@ module Utils
     end
 
     class DefaultStyle < Style
-      def command_style_reference
+      def command
         ""
       end
     end
