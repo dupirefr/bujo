@@ -1,3 +1,5 @@
+require 'singleton'
+
 class Configuration
   include Singleton
   attr_reader :style
