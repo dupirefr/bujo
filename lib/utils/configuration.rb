@@ -23,6 +23,8 @@ module Utils
         DefaultStyle.new
       elsif yaml['type'] == "local"
         LocalStyle.new(yaml['sheet'], yaml['directory'])
+      else
+        raise
       end
     end
 

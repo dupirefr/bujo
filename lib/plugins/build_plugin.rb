@@ -52,7 +52,7 @@ module Plugins
       FileUtils.remove_dir("target") if File.exist?("target")
 
       puts "Converting to HTML..."
-      %x(asciidoctor #{Configuration.load.style.command}-R src -D target '**/*.adoc')
+      %x(asciidoctor #{Configuration.load.style.command} -R src -D target '**/*.adoc')
     end
   end
 end

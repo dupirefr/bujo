@@ -32,7 +32,7 @@ module Plugins
       system("vim #{file}")
 
       puts "Converting to HTML..."
-      %x(asciidoctor #{Configuration.load.style.command}-R src -D target '#{file}')
+      %x(asciidoctor #{Configuration.load.style.command} -R src -D target '#{file}')
     end
   end
 end
