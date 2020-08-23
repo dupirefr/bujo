@@ -7,6 +7,7 @@ require_relative 'month-module'
 require_relative '../options/option'
 require_relative '../shortcuts/today-shortcut'
 require_relative '../shortcuts/this-month-shortcut'
+require_relative '../utils/bujo-configuration'
 
 class BuildModule < Module
   def initialize
@@ -46,10 +47,7 @@ class BuildModule < Module
     puts "Cleaning target..."
     FileUtils.remove_dir("target") if File.exist?("target")
 
-    configuration = YAML.load_file("bujo.yaml")
-    asciidoctor_command = "asciidoctor -R src -D target '**/*.adoc'"
-    asciidoctor_command = asciidoctor_command + "-a stylesdir=#{configuration['style']['directory']} -a stylesheet=#{configuration['style']['sheet']}.css" if configuration['sheet']['type'] == "custom"
     puts "Converting to HTML..."
-    %x(#{asciidoctor_command})
+    %x("asciidoctor #{Configuration.instance.style.command}-R src -D target '**/*.adoc'")
   end
 end

@@ -4,7 +4,7 @@ require_relative 'module'
 require_relative '../options/option'
 require_relative '../shortcuts/today-shortcut'
 require_relative '../shortcuts/this-month-shortcut'
-require_relative '../utils/journal-dates'
+require_relative '../utils/bujo-dates'
 
 class MonthModule < Module
   def initialize

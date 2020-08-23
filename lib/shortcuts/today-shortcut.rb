@@ -1,5 +1,5 @@
 require_relative 'shortcut'
-require_relative '../utils/journal-dates'
+require_relative '../utils/bujo-dates'
 
 class TodayShortcut < Shortcut
   def initialize
