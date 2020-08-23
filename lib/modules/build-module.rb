@@ -45,7 +45,10 @@ class BuildModule < Module
     puts "Cleaning target..."
     FileUtils.remove_dir("target")
 
+    configuration = YAML.load_file("bujo.yaml")
+    asciidoctor_command = "asciidoctor -R src -D target '**/*.adoc'"
+    asciidoctor_command = asciidoctor_command + "-a stylesdir=#{configuration['style']['directory']} -a stylesheet=#{configuration['style']['sheet']}.css" if configuration['sheet']['type'] == "custom"
     puts "Converting to HTML..."
-    %x(asciidoctor -R src -D target '**/*.adoc')
+    %x(#{asciidoctor_command})
   end
 end

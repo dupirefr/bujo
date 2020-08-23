@@ -23,7 +23,10 @@ class EditionModule < Module
     puts "Editing entry..."
     system("vim #{file}")
 
+    configuration = YAML.load_file("bujo.yaml")
+    asciidoctor_command = "asciidoctor -R src -D target '#{file}'"
+    asciidoctor_command = asciidoctor_command + "-a stylesdir=#{configuration['style']['directory']} -a stylesheet=#{configuration['style']['sheet']}.css" if configuration['sheet']['type'] == "custom"
     puts "Converting to HTML..."
-    %x(asciidoctor -R src -D target '#{file}')
+    %x(#{asciidoctor_command})
   end
 end
