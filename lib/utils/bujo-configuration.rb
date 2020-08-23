@@ -1,4 +1,6 @@
 require 'singleton'
+gem 'psych'
+require 'psych'
 
 class Configuration
   include Singleton
@@ -7,7 +9,7 @@ class Configuration
   private def initialize
     super
 
-    yaml = YAML.load_file("bujo.yaml")
+    yaml = Psych.load_file("bujo.yaml")
     @style = Style.parse(yaml['style'])
   end
 end
@@ -21,13 +23,13 @@ class Style
     end
   end
 
-  class DefaultStyle
+  class DefaultStyle < Style
     def command_style_reference
       ""
     end
   end
 
-  class LocalStyle
+  class LocalStyle < Style
     attr_reader :sheet, :directory
 
     def initialize(sheet, directory)
