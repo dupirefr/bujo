@@ -53,7 +53,7 @@ module Plugins
 
       puts "Converting to HTML..."
       puts "asciidoctor #{Configuration.load.style.command} -R src -D target '**/*.adoc'"
-      %x(asciidoctor #{Configuration.load.style.command} -R src -D target '**/*.adoc')
+      system "asciidoctor #{Configuration.load.style.command} -R src -D target '**/*.adoc'"
     end
   end
 end
