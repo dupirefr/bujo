@@ -17,11 +17,6 @@ module Plugins
     def initialize
       super("build", [
           Option.builder
-              .with_name("i", "init")
-              .with_description("Init the structure of the journal")
-              .with_action(-> { init_journal })
-              .build,
-          Option.builder
               .with_name("b", "build")
               .with_description("Build HTML representation of the journal")
               .with_action(-> { build_journal })

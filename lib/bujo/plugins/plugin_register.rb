@@ -3,30 +3,16 @@ module Plugins
   require 'optparse'
 
   # Own
-  require_relative 'day_plugin'
-  require_relative 'month_plugin'
-  require_relative 'projects_plugin'
-  require_relative 'collections_plugin'
-  require_relative 'build_plugin'
-  require_relative 'edition_plugin'
+  require_relative 'init_plugin'
 
   class PluginRegister
-    private def initialize(plugins)
+    private def initialize(plugins = [])
       @plugins = plugins
-    end
-
-    def self.empty
-      PluginRegister.new([])
     end
 
     def self.default
       PluginRegister.new([
-                             DayPlugin.new,
-                             MonthPlugin.new,
-                             ProjectsPlugin.new,
-                             CollectionsPlugin.new,
-                             BuildPlugin.new,
-                             EditionPlugin.new
+                             InitPlugin.new
       ])
     end
 
@@ -42,7 +28,7 @@ module Plugins
       end
     end
 
-    def parse
+    def parse(options)
       OptionParser.new do |parser|
         parser.banner = "Usage: bujo [options]"
 
@@ -72,7 +58,7 @@ module Plugins
         parser.on("-h", "--help", "Show this help message") do ||
           puts parser
         end
-      end.parse!
+      end.parse!(options)
     end
   end
 end

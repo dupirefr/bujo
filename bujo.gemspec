@@ -4,7 +4,6 @@ Gem::Specification.new do |spec|
   spec.date = %q{2020-08-23}
   spec.summary = %q{bujo is a support CLI to maintain Bullet Journal using AsciiDoctor}
   spec.authors = ["dupire.francois+pro@gmail.com"]
-  spec.require_paths = ["lib"]
-  spec.files = %w[lib/bujo.rb lib/options lib/plugins lib/shortcuts lib/utils]
+  spec.files = [Dir.glob("lib/**/*")]
   spec.executables << 'bujo'
 end
