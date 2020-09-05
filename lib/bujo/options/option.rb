@@ -1,12 +1,12 @@
 module Options
   class Option
-    attr_reader :short_name, :long_name, :description, :action, :shortcuts
+    attr_reader :short_name, :long_name, :description, :value_type, :action, :shortcuts
 
-    private def initialize(short_name, long_name, description, valued, action, shortcuts)
+    private def initialize(short_name, long_name, description, value_type, action, shortcuts)
       @short_name = short_name
       @long_name = long_name
       @description = description
-      @value_type = valued
+      @value_type = value_type
       @action = action
       @shortcuts = shortcuts
     end
