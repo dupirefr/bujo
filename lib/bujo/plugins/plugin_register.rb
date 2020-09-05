@@ -16,9 +16,10 @@ module Plugins
       ])
     end
 
-    def register(new_module)
-      puts "Registering #{new_module.name} module..."
-      @plugins << new_module
+    def register(plugin)
+      puts "Registering #{plugin.name} plugin..."
+      @plugins << plugin
+      self
     end
 
     def create_shortcuts(shortcuts)

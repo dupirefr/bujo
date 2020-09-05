@@ -4,6 +4,7 @@ module Plugins
 
   # Own
   require_relative '../../../lib/bujo/plugins/plugin_register'
+  require_relative '../../../lib/bujo/plugins/init_plugin'
 
   class PluginRegisterTest < Minitest::Test
     def test_init
@@ -11,7 +12,9 @@ module Plugins
       test_directory = Dir.mktmpdir("bujo")
 
       Dir.chdir(test_directory) do
-        PluginRegister.default.parse %w[--init]
+        PluginRegister.new
+            .register(InitPlugin.new)
+            .parse %w[--init]
 
         assert_path_exists("bujo.yaml", "The configuration file, bujo.yaml, hasn't been created.")
         expected_configuration_file = File.read(File.join(source_directory, "assets/bujo/bujo.yaml"))

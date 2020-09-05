@@ -1,9 +1,10 @@
 Gem::Specification.new do |spec|
-  spec.name = %q{bujo}
+  spec.name = "bujo"
   spec.version = "0.1.0"
-  spec.date = %q{2020-08-23}
-  spec.summary = %q{bujo is a support CLI to maintain Bullet Journal using AsciiDoctor}
-  spec.authors = ["dupire.francois+pro@gmail.com"]
-  spec.files = [Dir.glob("lib/**/*")]
-  spec.executables << 'bujo'
+  spec.date = "2020-08-23"
+  spec.summary = "support CLI to maintain Bullet Journal using AsciiDoctor"
+  spec.authors = "François Dupire"
+  spec.email = "dupire.francois+pro@gmail.com"
+  spec.files = Dir.glob("lib/**/*").concat(Dir.glob("assets/**/*"))
+  spec.executables << "bujo"
 end
