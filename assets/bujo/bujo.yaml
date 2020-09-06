@@ -1,3 +1,5 @@
-style:
-  type: default
-  sheet: notebook.css
+plugins:
+  - day
+  - month
+  - project
+  - collection

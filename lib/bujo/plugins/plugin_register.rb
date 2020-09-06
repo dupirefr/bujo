@@ -3,10 +3,10 @@ module Plugins
   require 'optparse'
 
   # Own
-  require_relative 'init_plugin'
+  require 'bujo/configuration/globals'
 
   class PluginRegister
-    private def initialize(plugins = [])
+    def initialize(plugins = [])
       @plugins = plugins
     end
 
@@ -22,40 +22,34 @@ module Plugins
       self
     end
 
-    def create_shortcuts(shortcuts)
-      puts "Creating shortcuts..." unless shortcuts.empty?
-      shortcuts.each do |shortcut|
-        shortcut.create
-      end
-    end
-
     def parse(options)
       OptionParser.new do |parser|
         parser.banner = "Usage: bujo [options]"
+
+        parser.on("-v", "--verbose", "Show more log messages") do ||
+          Configuration::Globals.set_verbose(true)
+        end
 
         @plugins.each { |mod|
           mod.options.each { |option|
             parser.on("--" + option.long_name + " VALUE", option.description) do |value|
               option.action.call(value)
-              create_shortcuts(option.shortcuts)
             end if option.short_name.nil? && option.valued
 
             parser.on("-" + option.short_name, "--" + option.long_name + " VALUE", option.description) do |value|
               option.action.call(value)
-              create_shortcuts(option.shortcuts)
             end if !option.short_name.nil? && option.valued
 
             parser.on("--" + option.long_name, option.description) do ||
               option.action.call
-              create_shortcuts(option.shortcuts)
             end if option.short_name.nil? && !option.valued
 
             parser.on("-" + option.short_name, "--" + option.long_name, option.description) do ||
               option.action.call
-              create_shortcuts(option.shortcuts)
             end if !option.short_name.nil? && !option.valued
           }
         }
+
         parser.on("-h", "--help", "Show this help message") do ||
           puts parser
         end

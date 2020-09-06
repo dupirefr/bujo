@@ -3,18 +3,15 @@ module Plugins
   require 'minitest/autorun'
 
   # Own
-  require_relative '../../../lib/bujo/plugins/plugin_register'
-  require_relative '../../../lib/bujo/plugins/init_plugin'
+  require 'bujo'
 
-  class PluginRegisterTest < Minitest::Test
+  class BujoTest < Minitest::Test
     def test_init
       source_directory = Dir.pwd
       test_directory = Dir.mktmpdir("bujo")
 
       Dir.chdir(test_directory) do
-        PluginRegister.new
-            .register(InitPlugin.new)
-            .parse %w[--init]
+        parse %w[--init]
 
         assert_path_exists("bujo.yaml", "The configuration file, bujo.yaml, hasn't been created.")
         expected_configuration_file = File.read(File.join(source_directory, "assets/bujo/bujo.yaml"))

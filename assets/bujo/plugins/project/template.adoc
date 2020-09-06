@@ -2,7 +2,7 @@
 
 Index > Projects > ${project}
 
-[cols="2*", frame=none, options="header"]
+[cols="2*", options="header"]
 |===
 | Tâches | Notes
 

@@ -2,4 +2,4 @@
 
 require 'bujo'
 
-parse_plugins(ARGV)
+parse(ARGV)

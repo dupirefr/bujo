@@ -3,19 +3,17 @@ module Plugins
   require 'fileutils'
 
   # Own
-  require_relative 'plugin'
-  require_relative '../options/option'
+  require 'bujo/plugins/plugin'
+  require 'bujo/options/option'
 
-  include Options
-
-  class ProjectsPlugin < Plugin
+  class ProjectPlugin < Plugin
     def initialize
       super("projects", [
-          Option.builder
+          Options::Option.builder
               .with_name("p", "project")
               .with_description("Create an entry for a project in the journal")
               .valued
-              .with_action(lambda { |project| ProjectsPlugin.create_project(project) })
+              .with_action(lambda { |project| ProjectPlugin.create_project(project) })
               .build,
       ])
     end

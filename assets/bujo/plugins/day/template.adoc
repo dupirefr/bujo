@@ -1,17 +1,18 @@
-= Log du ${hr_day}
+= Log du ${hr_day_long}
 
-<<../index.adoc#, Index>> > Logs > <<${cr_month}.adoc#, ${hr_month}>> > ${hr_day}
+<<../index.adoc#, Index>> > Logs > <<${cr_month}.adoc#, ${hr_month}>> > ${hr_day_short}
 
-[cols="2*", frame=none, options="header"]
+[cols="2*a", options="header"]
 |===
 | Tâches ponctuelles | Tâches récurrentes
-a|
+|
 
-a|
+|
 
 2+h| Notes
 
-2+a|
+2+|
+
 |===
 
 [.text-center]

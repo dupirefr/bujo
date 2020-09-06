@@ -5,6 +5,6 @@ Gem::Specification.new do |spec|
   spec.summary = "support CLI to maintain Bullet Journal using AsciiDoctor"
   spec.authors = "François Dupire"
   spec.email = "dupire.francois+pro@gmail.com"
-  spec.files = Dir.glob("lib/**/*").concat(Dir.glob("assets/**/*"))
+  spec.files = [Dir.glob("lib/**/*"), Dir.glob("assets/**/*")].flatten
   spec.executables << "bujo"
 end
