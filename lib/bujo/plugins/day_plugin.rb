@@ -27,6 +27,10 @@ module Plugins
       ])
     end
 
+    def directory
+      "logs"
+    end
+
     def create_today
       puts "Creating an entry for today (#{Utils::DateUtils.human_readable_date}) in the journal"
       do_create_day

@@ -20,6 +20,10 @@ module Plugins
       ])
     end
 
+    def directory
+      "collections"
+    end
+
     def create_collection(collection_name)
       puts "Creating an entry for collection #{collection_name} in the journal"
       rendered_template = Templates::TemplateRenderer.new.render("collection/template.adoc", {

@@ -20,6 +20,10 @@ module Plugins
       ])
     end
 
+    def directory
+      "projects"
+    end
+
     def create_project(project_name)
       puts "Creating an entry for project #{project_name} in the journal"
       rendered_template = Templates::TemplateRenderer.new.render("project/template.adoc", {

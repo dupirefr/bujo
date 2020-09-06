@@ -1,3 +1,5 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
 = ${collection_name}
 
 <<../index.adoc#, Index>> > Collections > ${collection_name}

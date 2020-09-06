@@ -27,6 +27,10 @@ module Plugins
       ])
     end
 
+    def directory
+      "logs"
+    end
+
     def create_this_month
       puts "Creating an entry for this month (#{Utils::DateUtils.human_readable_month}) in the journal"
       do_create_month

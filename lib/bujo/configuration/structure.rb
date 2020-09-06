@@ -16,6 +16,10 @@ module Configuration
       global_asset_path(File.join("bujo/plugins", relative_path))
     end
 
+    def self.global_stylesheet_path(relative_path)
+      global_asset_path(File.join("bujo/stylesheets", relative_path))
+    end
+
     # Local
     def self.local_path(relative_path)
       File.join(local_home, relative_path)
@@ -42,7 +46,7 @@ module Configuration
     end
 
     def self.create_source_directory(directory_relative_path)
-      Dir.mkdir_p(File.join(sources_path, directory_relative_path))
+      FileUtils.mkdir_p(File.join(sources_path, directory_relative_path))
     end
 
     private

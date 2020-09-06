@@ -8,6 +8,7 @@ module Plugins
   require 'bujo/plugins/plugin'
   require 'bujo/plugins/plugin_repository'
   require 'bujo/options/option'
+  require 'bujo/templates/template_renderer'
 
   class InitPlugin < Plugin
     def initialize
@@ -24,7 +25,14 @@ module Plugins
       puts "Initializing a new BuJo..."
       FileUtils.copy(Configuration::Structure.global_asset_path("bujo/bujo.yaml"), Configuration::Structure.local_path("bujo.yaml"))
       Dir.mkdir(Configuration::Structure.sources_path)
-      FileUtils.copy(Configuration::Structure.global_asset_path("bujo/plugins/init/template.adoc"), Configuration::Structure.source_path("index.adoc"))
+
+      rendered_template = Templates::TemplateRenderer.new.render("init/template.adoc", {})
+      begin
+        index_source_path = Configuration::Structure.source_path("index.adoc")
+        file = File.open(index_source_path, "w") { |file| file.puts(rendered_template) }
+      ensure
+        file.close unless file.nil?
+      end
 
       configuration = Configuration::Configuration.load
       plugin_repository = PluginRepository.new(configuration)

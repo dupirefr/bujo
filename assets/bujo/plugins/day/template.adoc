@@ -1,3 +1,5 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
 = Log du ${hr_day_long}
 
 <<../index.adoc#, Index>> > Logs > <<${cr_month}.adoc#, ${hr_month}>> > ${hr_day_short}

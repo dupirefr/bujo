@@ -1,3 +1,5 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
 = ${project_name}
 
 <<../index.adoc#, Index>> > Projets > ${project_name}
