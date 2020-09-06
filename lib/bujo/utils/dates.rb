@@ -24,4 +24,8 @@ module Utils
   def parse_human_readable_date(date_as_string)
     Date.strptime(date_as_string, "%d/%m/%Y")
   end
+
+  def parse_human_readable_month(month_as_string)
+    Date.strptime("01/#{month_as_string}", "%d/%m/%Y")
+  end
 end

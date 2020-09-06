@@ -3,6 +3,7 @@ module Plugins
   require 'bujo/plugins/plugin'
   require 'bujo/options/option'
   require 'bujo/templates/template_renderer'
+  require 'bujo/utils/dates'
 
   class DayPlugin < Plugin
     def initialize

@@ -2,16 +2,17 @@
 
 <<../index.adoc#, Index>> > Logs > ${hr_month}
 
-[cols="2*", options="header"]
+[cols="2*a", options="header"]
 |===
 | Calendrier | Tâches
-a|
+|
 
-a|
+|
 
 2+h| Notes
 
-2+a|
+2+|
+
 |===
 
 [.text-center]
