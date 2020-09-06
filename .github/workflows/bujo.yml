@@ -24,5 +24,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7
+    - name: Install dependencies
+      run: bundle install
     - name: Run tests
-      run: rake test
+      run: bundle exec rake test
