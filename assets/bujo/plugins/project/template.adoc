@@ -1,12 +1,13 @@
 = ${project}
 
-Index > Projects > ${project}
+<<../index.adoc#, Index>> > Projets > ${project}
 
-[cols="2*", options="header"]
+[cols="2*a", options="header"]
 |===
 | Tâches | Notes
 
-a|
+|
 
-a|
+|
+
 |===

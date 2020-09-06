@@ -1,4 +1,4 @@
 = ${collection}
 
-Index > Collections > ${collection}
+<<../index.adoc#, Index>> > Collections > ${collection}
 
