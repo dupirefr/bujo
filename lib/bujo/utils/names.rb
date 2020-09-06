@@ -3,7 +3,11 @@ module Utils
 
   class NameUtils
     def self.computerize(name)
-      I18n.transliterate(name.downcase).gsub(/\s+/, "_")
+      I18n.config.available_locales = :en
+      I18n.transliterate(name, :locale => :en)
+          .downcase
+          .gsub(/\s+/, "_")
+          .gsub(/'/, "_")
     end
   end
 end

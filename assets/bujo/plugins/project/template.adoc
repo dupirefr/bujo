@@ -1,6 +1,6 @@
-= ${project}
+= ${project_name}
 
-<<../index.adoc#, Index>> > Projets > ${project}
+<<../index.adoc#, Index>> > Projets > ${project_name}
 
 [cols="2*a", options="header"]
 |===

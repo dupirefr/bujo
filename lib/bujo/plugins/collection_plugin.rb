@@ -22,8 +22,8 @@ module Plugins
 
     def create_collection(collection_name)
       puts "Creating an entry for collection #{collection_name} in the journal"
-      rendered_template = Templates::TemplateRenderer.new.render("collections/template.adoc", {
-          :project_name => collection_name
+      rendered_template = Templates::TemplateRenderer.new.render("collection/template.adoc", {
+          :collection_name => collection_name
       })
       begin
         collection_source_path = Configuration::Structure.source_path("collections/#{Utils::NameUtils.computerize(collection_name)}.adoc")
