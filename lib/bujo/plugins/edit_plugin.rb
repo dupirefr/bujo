@@ -7,7 +7,7 @@ module Plugins
   require 'bujo/options/option'
   require 'bujo/configuration/configuration'
 
-  class EditionPlugin < Plugin
+  class EditPlugin < Plugin
     def initialize
       super("edition", [
           Options::Option.builder

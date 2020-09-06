@@ -3,4 +3,5 @@ plugins:
   - month
   - project
   - collection
+  - edit
 editor: vim
