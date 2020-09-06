@@ -2,6 +2,9 @@
 src/
 target/
 
+# Ruby
+*.gem
+
 # IDE
 .idea
 *.iml
