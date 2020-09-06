@@ -28,17 +28,17 @@ module Plugins
     end
 
     def create_this_month
-      puts "Creating an entry for this month (#{human_readable_month}) in the journal"
+      puts "Creating an entry for this month (#{Utils::DateUtils.human_readable_month}) in the journal"
       do_create_month
     end
 
     def create_next_month
-      puts "Creating an entry for next month (#{human_readable_month(Date.today.next_month)}) in the journal"
+      puts "Creating an entry for next month (#{Utils::DateUtils.human_readable_month(Date.today.next_month)}) in the journal"
       do_create_month(Date.today.next_month)
     end
 
     def create_month(month_as_string)
-      date = parse_human_readable_month(month_as_string)
+      date = Utils::DateUtils.parse_human_readable_month(month_as_string)
       puts "Creating an entry for #{month_as_string} in the journal"
       do_create_month(date)
     end
@@ -47,12 +47,12 @@ module Plugins
 
     def do_create_month(date = Date.today)
       rendered_template = Templates::TemplateRenderer.new.render("month/template.adoc", {
-          :cr_month => computer_readable_month(date),
-          :cr_previous_month => computer_readable_month(date.prev_month),
-          :cr_next_month => computer_readable_month(date.next_month)
+          :hr_month => Utils::DateUtils.human_readable_month(date),
+          :cr_previous_month => Utils::DateUtils.computer_readable_month(date.prev_month),
+          :cr_next_month => Utils::DateUtils.computer_readable_month(date.next_month)
       })
       begin
-        day_source_path = Configuration::Structure.source_path("logs/#{computer_readable_month(date)}.adoc")
+        day_source_path = Configuration::Structure.source_path("logs/#{Utils::DateUtils.computer_readable_month(date)}.adoc")
         file = File.open(day_source_path, "w") { |file| file.puts(rendered_template) }
       ensure
         file.close unless file.nil?

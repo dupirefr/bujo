@@ -12,8 +12,8 @@ module Configuration
       File.join(global_assets_path, relative_path)
     end
 
-    def self.global_template_path(template_relative_path)
-      File.join(global_templates_path, template_relative_path)
+    def self.global_plugin_asset_path(relative_path)
+      global_asset_path(File.join("bujo/plugins", relative_path))
     end
 
     # Local
@@ -58,10 +58,6 @@ module Configuration
 
     def self.global_assets_path
       File.join(global_home, 'assets')
-    end
-
-    def self.global_templates_path
-      File.join(global_home, "assets/bujo/templates")
     end
 
     # Local

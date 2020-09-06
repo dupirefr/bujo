@@ -2,7 +2,7 @@ module Plugins
 
   # Own
   require 'bujo/configuration/configuration'
-  require 'configuration/structure'
+  require 'bujo/configuration/structure'
 
   class PluginRepository
     def initialize(configuration)
