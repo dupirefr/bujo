@@ -1,14 +1,13 @@
 module Options
   class Option
-    attr_reader :short_name, :long_name, :description, :value_type, :action, :shortcuts
+    attr_reader :short_name, :long_name, :description, :value_type, :action
 
-    private def initialize(short_name, long_name, description, value_type, action, shortcuts)
+    private def initialize(short_name, long_name, description, value_type, action)
       @short_name = short_name
       @long_name = long_name
       @description = description
       @value_type = value_type
       @action = action
-      @shortcuts = shortcuts
     end
 
     def self.builder
@@ -45,13 +44,8 @@ module Options
         self
       end
 
-      def with_shortcut(shortcut)
-        @shortcuts << shortcut
-        self
-      end
-
       def build
-        Option.new(@short_name, @long_name, @description, @value_type, @action, @shortcuts)
+        Option.new(@short_name, @long_name, @description, @value_type, @action)
       end
     end
   end

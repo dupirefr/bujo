@@ -3,7 +3,7 @@ module Options
   require 'minitest/autorun'
 
   # Own
-  require_relative '../../../lib/bujo/options/option'
+  require 'bujo/options/option'
 
   class OptionTest < Minitest::Test
     def test_long_only_option

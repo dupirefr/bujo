@@ -3,15 +3,8 @@ module Plugins
   require 'fileutils'
 
   # Own
-  require_relative 'plugin'
-  require_relative '../options/option'
-  require_relative '../shortcuts/today_shortcut'
-  require_relative '../shortcuts/this_month_shortcut'
-  require_relative '../utils/configuration'
-
-  include Options
-  include Shortcuts
-  include Utils
+  require 'bujo/plugins/plugin'
+  require 'bujo/options/option'
 
   class EditionPlugin < Plugin
     def initialize

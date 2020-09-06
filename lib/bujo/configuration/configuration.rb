@@ -3,7 +3,7 @@ module Configuration
   require 'psych'
 
   # Own
-  require_relative '../plugins/plugin'
+  require 'bujo/plugins/plugin'
 
   class Configuration
     attr_reader :mandatory_plugins, :extra_plugins

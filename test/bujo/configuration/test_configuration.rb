@@ -3,8 +3,8 @@ module Configuration
   require 'minitest/autorun'
 
   # Own
-  require_relative '../../../lib/bujo/configuration/configuration'
-  require_relative '../../../lib/bujo/plugins/init_plugin'
+  require 'bujo/configuration/configuration'
+  require 'bujo/plugins/init_plugin'
 
   class ConfigurationTest < Minitest::Test
     def test_load_no_plugins
