@@ -6,11 +6,12 @@ module Configuration
   require 'bujo/plugins/plugin'
 
   class Configuration
-    attr_reader :mandatory_plugins, :extra_plugins
+    attr_reader :mandatory_plugins, :extra_plugins, :editor
 
-    private def initialize(plugins)
+    private def initialize(plugins, editor)
       @mandatory_plugins = %w[init build]
       @extra_plugins = plugins
+      @editor = editor
     end
 
     def plugins
@@ -20,7 +21,7 @@ module Configuration
     def self.load(configuration_file = "bujo.yaml")
       yaml = Psych.load_file(configuration_file)
       plugins = (yaml['plugins'] || [])
-      Configuration.new(plugins)
+      Configuration.new(plugins, yaml['editor'])
     end
   end
 end
