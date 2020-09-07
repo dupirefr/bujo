@@ -1,0 +1,6 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
+= Café l'Amour
+
+<<../index.adoc#, Index>> > Collections > Café l'Amour
+

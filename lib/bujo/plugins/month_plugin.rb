@@ -20,7 +20,7 @@ module Plugins
               .build,
           Options::Option.builder
               .with_name("month")
-              .with_description("Create an entry for the giben month in the journal")
+              .with_description("Create an entry for the given month in the journal")
               .valued
               .with_action(lambda { |month| create_month(month) })
               .build

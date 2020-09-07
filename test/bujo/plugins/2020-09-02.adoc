@@ -1,0 +1,21 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
+= Log du 02/09/2020
+
+<<../index.adoc#, Index>> > Logs > <<2020-09.adoc#, 09/2020>> > 02
+
+[cols="2*a", options="header"]
+|===
+| Tâches ponctuelles | Tâches récurrentes
+|
+
+|
+
+2+h| Notes
+
+2+|
+
+|===
+
+[.text-center]
+<<2020-09-01.adoc#, <= Jour précédent>> | <<2020-09-03.adoc#, Jour suivant =>>>

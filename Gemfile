@@ -9,3 +9,4 @@ gem 'i18n'
 
 # Test dependencies
 gem 'minitest'
+gem 'simplecov'

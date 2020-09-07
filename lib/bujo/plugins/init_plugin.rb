@@ -21,7 +21,7 @@ module Plugins
       ])
     end
 
-    private def init_journal
+    def init_journal
       puts "Initializing a new BuJo..."
       FileUtils.copy(Configuration::Structure.global_asset_path("bujo/bujo.yaml"), Configuration::Structure.local_path("bujo.yaml"))
       Dir.mkdir(Configuration::Structure.sources_path)

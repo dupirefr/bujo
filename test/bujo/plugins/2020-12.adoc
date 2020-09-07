@@ -1,0 +1,21 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
+= Log du 12/2020
+
+<<../index.adoc#, Index>> > Logs > 12/2020
+
+[cols="2*a", options="header"]
+|===
+| Calendrier | Tâches
+|
+
+|
+
+2+h| Notes
+
+2+|
+
+|===
+
+[.text-center]
+<<2020-11.adoc#, <= Mois précédent>> | <<2021-01.adoc#, Mois suivant =>>>

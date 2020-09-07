@@ -1,0 +1,6 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
+= Cafés
+
+<<../index.adoc#, Index>> > Collections > Cafés
+

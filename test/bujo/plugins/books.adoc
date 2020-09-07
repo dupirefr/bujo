@@ -1,0 +1,6 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
+= Books
+
+<<../index.adoc#, Index>> > Collections > Books
+

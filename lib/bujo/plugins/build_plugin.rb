@@ -20,12 +20,12 @@ module Plugins
       ])
     end
 
-    private
-
     def build_journal
       clean_target
       convert_files
     end
+
+    private
 
     def clean_target
       puts "Cleaning target..."

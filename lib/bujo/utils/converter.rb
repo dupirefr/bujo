@@ -1,4 +1,8 @@
 module Utils
+  # Ruby
+  require 'asciidoctor'
+
+  # Own
   require 'bujo/configuration/structure'
   require 'bujo/configuration/globals'
 

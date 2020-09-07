@@ -1,0 +1,15 @@
+:stylesheet: https://darshandsoni.com/asciidoctor-skins/css/notebook.css
+
+= Buy house
+
+<<../index.adoc#, Index>> > Projets > Buy house
+
+[cols="2*a", options="header"]
+|===
+| Tâches | Notes
+
+|
+
+|
+
+|===
