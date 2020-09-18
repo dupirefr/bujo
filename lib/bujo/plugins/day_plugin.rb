@@ -2,11 +2,10 @@ module Plugins
   # Own
   require 'bujo/plugins/plugin'
   require 'bujo/options/option'
-  require 'bujo/templates/template_renderer'
   require 'bujo/utils/dates'
 
   class DayPlugin < Plugin
-    def initialize
+    def initialize(dependencies = [])
       super("day", [
           Options::Option.builder
               .with_name("today")
@@ -25,6 +24,8 @@ module Plugins
               .with_action(lambda { |value| create_day(value) })
               .build
       ])
+
+      @template_renderer = dependencies[:template_renderer]
     end
 
     def directory
@@ -50,7 +51,7 @@ module Plugins
     private
 
     def do_create_day(date = Date.today)
-      rendered_template = Templates::TemplateRenderer.new.render("day/template.adoc", {
+      rendered_template = @template_renderer.render("day/template.adoc", {
           :hr_day_long => Utils::DateUtils.human_readable_date(date),
           :hr_day_short => Utils::DateUtils.day(date),
           :hr_month => Utils::DateUtils.human_readable_month(date),

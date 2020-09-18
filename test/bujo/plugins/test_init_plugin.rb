@@ -4,13 +4,14 @@ module Plugins
 
   # Own
   require 'bujo/plugins/init_plugin'
+  require 'bujo/templates/template_renderer'
 
   require_relative '../test_utils'
 
   class InitPluginTest < Minitest::Test
     def test_init_journal
       execute_in_test_directory(-> (working_directory) {
-        init_plugin = InitPlugin.new
+        init_plugin = InitPlugin.new({template_renderer: Templates::TemplateRenderer.new})
         init_plugin.init_journal
 
         configuration_file_is_copied(working_directory)
