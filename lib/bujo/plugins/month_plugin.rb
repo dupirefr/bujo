@@ -56,8 +56,8 @@ module Plugins
           :cr_previous_month => Utils::DateUtils.computer_readable_month(date.prev_month),
           :cr_next_month => Utils::DateUtils.computer_readable_month(date.next_month)
       })
+      day_source_path = Configuration::Structure.source_path("logs/#{Utils::DateUtils.computer_readable_month(date)}.adoc")
       begin
-        day_source_path = Configuration::Structure.source_path("logs/#{Utils::DateUtils.computer_readable_month(date)}.adoc")
         file = File.open(day_source_path, "w") { |file| file.puts(rendered_template) }
       ensure
         file.close unless file.nil?

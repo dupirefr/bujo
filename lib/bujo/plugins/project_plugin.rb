@@ -30,8 +30,8 @@ module Plugins
       rendered_template = @template_renderer.render("project/template.adoc", {
           :project_name => project_name
       })
+      project_source_path = Configuration::Structure.source_path("projects/#{Utils::NameUtils.computerize(project_name)}.adoc")
       begin
-        project_source_path = Configuration::Structure.source_path("projects/#{Utils::NameUtils.computerize(project_name)}.adoc")
         file = File.open(project_source_path, "w") { |file| file.puts(rendered_template) }
       ensure
         file.close unless file.nil?

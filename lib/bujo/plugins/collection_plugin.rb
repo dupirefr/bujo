@@ -30,8 +30,8 @@ module Plugins
       rendered_template = @template_renderer.render("collection/template.adoc", {
           :collection_name => collection_name
       })
+      collection_source_path = Configuration::Structure.source_path("collections/#{Utils::NameUtils.computerize(collection_name)}.adoc")
       begin
-        collection_source_path = Configuration::Structure.source_path("collections/#{Utils::NameUtils.computerize(collection_name)}.adoc")
         file = File.open(collection_source_path, "w") { |file| file.puts(rendered_template) }
       ensure
         file.close unless file.nil?
