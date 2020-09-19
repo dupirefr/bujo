@@ -31,7 +31,6 @@ jobs:
       run: gem build bujo.gemspec
     - name: Publish gem
       run: |
-        mkdir ~/.gem
         echo '---\n' > ~/.gem/credentials
         echo ':rubygems_api_key: '$GEM_HOST_API_KEY >> ~/.gem/credentials
         gem push bujo-*.gem
