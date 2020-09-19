@@ -14,8 +14,7 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
-
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,4 +30,8 @@ jobs:
     - name: Build gem
       run: gem build bujo.gemspec
     - name: Publish gem
-      run: gem push bujo-*.gem
+      run: |
+        mkdir ~/.gem
+        echo '---\n' > ~/.gem/credentials
+        echo ':rubygems_api_key: '$GEM_HOST_API_KEY >> ~/.gem/credentials
+        gem push bujo-*.gem
