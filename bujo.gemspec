@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "bujo"
-  spec.version = "0.1.1"
+  spec.version = "0.1.2"
   spec.date = "2020-08-23"
   spec.summary = "support CLI to maintain Bullet Journal using AsciiDoctor"
   spec.authors = "François Dupire"

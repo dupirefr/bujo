@@ -6,6 +6,7 @@ module Plugins
   require 'bujo/plugins/plugin'
   require 'bujo/options/option'
   require 'bujo/utils/names'
+  require 'bujo/utils/files'
 
   class CollectionPlugin < Plugin
     def initialize(dependencies = [])
@@ -30,12 +31,8 @@ module Plugins
       rendered_template = @template_renderer.render("collection/template.adoc", {
           :collection_name => collection_name
       })
-      begin
-        collection_source_path = Configuration::Structure.source_path("collections/#{Utils::NameUtils.computerize(collection_name)}.adoc")
-        file = File.open(collection_source_path, "w") { |file| file.puts(rendered_template) }
-      ensure
-        file.close unless file.nil?
-      end
+      collection_source_path = Configuration::Structure.source_path("collections/#{Utils::NameUtils.computerize(collection_name)}.adoc")
+      Utils::Files.write(collection_source_path, rendered_template)
     end
   end
 end

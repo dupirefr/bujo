@@ -6,6 +6,7 @@ module Plugins
   require 'bujo/plugins/plugin'
   require 'bujo/options/option'
   require 'bujo/utils/names'
+  require 'bujo/utils/files'
 
   class ProjectPlugin < Plugin
     def initialize(dependencies = [])
@@ -30,12 +31,8 @@ module Plugins
       rendered_template = @template_renderer.render("project/template.adoc", {
           :project_name => project_name
       })
-      begin
-        project_source_path = Configuration::Structure.source_path("projects/#{Utils::NameUtils.computerize(project_name)}.adoc")
-        file = File.open(project_source_path, "w") { |file| file.puts(rendered_template) }
-      ensure
-        file.close unless file.nil?
-      end
+      project_source_path = Configuration::Structure.source_path("projects/#{Utils::NameUtils.computerize(project_name)}.adoc")
+      Utils::Files.write(project_source_path, rendered_template)
     end
   end
 end

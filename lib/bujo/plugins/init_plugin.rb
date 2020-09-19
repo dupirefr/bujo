@@ -8,6 +8,7 @@ module Plugins
   require 'bujo/plugins/plugin'
   require 'bujo/plugins/plugin_repository'
   require 'bujo/options/option'
+  require 'bujo/utils/files'
 
   class InitPlugin < Plugin
     def initialize(dependencies = [])
@@ -28,12 +29,8 @@ module Plugins
       Dir.mkdir(Configuration::Structure.sources_path)
 
       rendered_template = @template_renderer.render("init/template.adoc", {})
-      begin
-        index_source_path = Configuration::Structure.source_path("index.adoc")
-        file = File.open(index_source_path, "w") { |file| file.puts(rendered_template) }
-      ensure
-        file.close unless file.nil?
-      end
+      index_source_path = Configuration::Structure.source_path("index.adoc")
+      Utils::Files.write(index_source_path, rendered_template)
 
       configuration = Configuration::Configuration.load
       plugin_repository = PluginRepository.new(configuration, @template_renderer)
