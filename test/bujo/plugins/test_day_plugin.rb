@@ -5,12 +5,13 @@ module Plugins
 
   # Own
   require 'bujo/plugins/day_plugin'
+  require 'bujo/templates/template_renderer'
 
   require_relative '../test_utils'
 
   class DayPluginTest < Minitest::Test
     def test_directory
-      day_plugin = DayPlugin.new
+      day_plugin = DayPlugin.new({template_renderer: Templates::TemplateRenderer.new})
 
       assert_equal("logs", day_plugin.directory)
     end
@@ -20,7 +21,7 @@ module Plugins
         create_logs_directory
 
         Date.stub(:today, Date.strptime("01/09/2020", "%d/%m/%Y")) do
-          day_plugin = DayPlugin.new
+          day_plugin = DayPlugin.new({template_renderer: Templates::TemplateRenderer.new})
           day_plugin.create_today
 
           today_log_file_is_created(working_directory)
@@ -33,7 +34,7 @@ module Plugins
         create_logs_directory
 
         Date.stub(:today, Date.strptime("01/09/2020", "%d/%m/%Y")) do
-          day_plugin = DayPlugin.new
+          day_plugin = DayPlugin.new({template_renderer: Templates::TemplateRenderer.new})
           day_plugin.create_tomorrow
 
           tomorrow_log_file_is_created(working_directory)
@@ -45,7 +46,7 @@ module Plugins
       execute_in_test_directory(-> (working_directory) {
         create_logs_directory
 
-        day_plugin = DayPlugin.new
+        day_plugin = DayPlugin.new({template_renderer: Templates::TemplateRenderer.new})
         day_plugin.create_day("03/09/2020")
 
         day_log_file_is_created(working_directory)

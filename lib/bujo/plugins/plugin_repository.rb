@@ -1,12 +1,12 @@
 module Plugins
-
   # Own
   require 'bujo/configuration/configuration'
   require 'bujo/configuration/structure'
 
   class PluginRepository
-    def initialize(configuration)
+    def initialize(configuration, template_renderer)
       @configuration = configuration
+      @template_renderer = template_renderer
     end
 
     def find_all
@@ -55,7 +55,7 @@ module Plugins
     end
 
     def to_plugin_instance(plugin_name)
-      Object.const_get("Plugins::#{plugin_name.capitalize}Plugin").new
+      Object.const_get("Plugins::#{plugin_name.capitalize}Plugin").new({template_renderer: @template_renderer})
     end
   end
 end

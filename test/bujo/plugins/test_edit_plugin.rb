@@ -16,7 +16,7 @@ module Plugins
         editor_mock = Minitest::Mock.new
         editor_mock.expect(:nil?, false)
         editor_mock.expect(:call, _, ["src/index.adoc"])
-        edit_plugin = EditPlugin.new(editor_mock)
+        edit_plugin = EditPlugin.new([], editor_mock)
 
         edit_plugin.edit_entry("src/index.adoc")
 

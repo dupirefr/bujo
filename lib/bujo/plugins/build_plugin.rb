@@ -10,7 +10,7 @@ module Plugins
   require 'bujo/utils/converter'
 
   class BuildPlugin < Plugin
-    def initialize
+    def initialize(dependencies = [])
       super("build", [
           Options::Option.builder
               .with_name("b", "build")

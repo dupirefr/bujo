@@ -5,11 +5,10 @@ module Plugins
   # Own
   require 'bujo/plugins/plugin'
   require 'bujo/options/option'
-  require 'bujo/templates/template_renderer'
   require 'bujo/utils/names'
 
   class ProjectPlugin < Plugin
-    def initialize
+    def initialize(dependencies = [])
       super("projects", [
           Options::Option.builder
               .with_name("p", "project")
@@ -18,6 +17,8 @@ module Plugins
               .with_action(lambda { |project| create_project(project) })
               .build,
       ])
+
+      @template_renderer = dependencies[:template_renderer]
     end
 
     def directory
@@ -26,7 +27,7 @@ module Plugins
 
     def create_project(project_name)
       puts "Creating an entry for project #{project_name} in the journal"
-      rendered_template = Templates::TemplateRenderer.new.render("project/template.adoc", {
+      rendered_template = @template_renderer.render("project/template.adoc", {
           :project_name => project_name
       })
       begin
