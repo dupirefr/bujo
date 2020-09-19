@@ -1,8 +1,8 @@
 module Utils
   class Files
-    def self.write(source_path, destination_path)
+    def self.write(path, lines)
       begin
-        file = File.open(source_path, "w") { |file| file.puts(destination_path) }
+        file = File.open(path, "w:UTF-8") { |file| file.puts(lines) }
       ensure
         file.close unless file.nil?
       end
