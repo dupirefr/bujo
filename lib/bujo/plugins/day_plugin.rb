@@ -3,6 +3,7 @@ module Plugins
   require 'bujo/plugins/plugin'
   require 'bujo/options/option'
   require 'bujo/utils/dates'
+  require 'bujo/utils/files'
 
   class DayPlugin < Plugin
     def initialize(dependencies = [])
@@ -60,11 +61,7 @@ module Plugins
           :cr_month => Utils::DateUtils.computer_readable_month(date)
       })
       day_source_path = Configuration::Structure.source_path("logs/#{Utils::DateUtils.computer_readable_date(date)}.adoc")
-      begin
-        file = File.open(day_source_path, "w") { |file| file.puts(rendered_template) }
-      ensure
-        file.close unless file.nil?
-      end
+      Utils::Files.write(day_source_path, rendered_template)
     end
   end
 end
