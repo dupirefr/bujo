@@ -10,15 +10,19 @@ module Plugins
   require 'bujo/plugins/build_plugin'
   require 'bujo/plugins/day_plugin'
   require 'bujo/plugins/month_plugin'
+  require 'bujo/templates/template_renderer'
 
   require_relative '../test_utils'
 
   class PluginRepositoryTest < Minitest::Test
     def test_find_all_only_mandatory
       configuration = Configuration::Configuration.load("test/bujo/configuration/no_plugins_configuration.yaml")
-      plugins = PluginRepository.new(configuration).find_all
+      plugins = PluginRepository.new(configuration, Templates::TemplateRenderer.new).find_all
 
-      expected_plugins = [InitPlugin.new, BuildPlugin.new]
+      expected_plugins = [
+          InitPlugin.new({template_renderer: Templates::TemplateRenderer.new}),
+          BuildPlugin.new
+      ]
 
       assert_equal(expected_plugins, plugins)
     end
@@ -34,16 +38,21 @@ module Plugins
         )
 
         assert_raises(StandardError, "Mandatory plugins shouldn't be overridden") do
-          PluginRepository.new(configuration).find_all
+          PluginRepository.new(configuration, Templates::TemplateRenderer.new).find_all
         end
       })
     end
 
     def test_find_all_extra
       configuration = Configuration::Configuration.load("test/bujo/configuration/some_plugins_configuration.yaml")
-      plugins = PluginRepository.new(configuration).find_all
+      plugins = PluginRepository.new(configuration, Templates::TemplateRenderer.new).find_all
 
-      expected_plugins = [InitPlugin.new, BuildPlugin.new, DayPlugin.new, MonthPlugin.new]
+      expected_plugins = [
+          InitPlugin.new({template_renderer: Templates::TemplateRenderer.new}),
+          BuildPlugin.new,
+          DayPlugin.new({template_renderer: Templates::TemplateRenderer.new}),
+          MonthPlugin.new({template_renderer: Templates::TemplateRenderer.new})
+      ]
 
       assert_equal(expected_plugins, plugins)
     end
@@ -58,9 +67,14 @@ module Plugins
             "plugins/day_plugin.rb"
         )
 
-        plugins = PluginRepository.new(configuration).find_all
+        plugins = PluginRepository.new(configuration, Templates::TemplateRenderer.new).find_all
 
-        expected_plugins = [InitPlugin.new, BuildPlugin.new, MonthPlugin.new, DayPlugin.new]
+        expected_plugins = [
+            InitPlugin.new({template_renderer: Templates::TemplateRenderer.new}),
+            BuildPlugin.new,
+            MonthPlugin.new({template_renderer: Templates::TemplateRenderer.new}),
+            DayPlugin.new({template_renderer: Templates::TemplateRenderer.new})
+        ]
 
         assert_equal(expected_plugins, plugins)
       })

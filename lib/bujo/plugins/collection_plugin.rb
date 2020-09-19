@@ -5,11 +5,10 @@ module Plugins
   # Own
   require 'bujo/plugins/plugin'
   require 'bujo/options/option'
-  require 'bujo/templates/template_renderer'
   require 'bujo/utils/names'
 
   class CollectionPlugin < Plugin
-    def initialize
+    def initialize(dependencies = [])
       super("collections", [
           Options::Option.builder
               .with_name("c", "collection")
@@ -18,6 +17,8 @@ module Plugins
               .with_action(lambda { |collection| create_collection(collection) })
               .build,
       ])
+
+      @template_renderer = dependencies[:template_renderer]
     end
 
     def directory
@@ -26,7 +27,7 @@ module Plugins
 
     def create_collection(collection_name)
       puts "Creating an entry for collection #{collection_name} in the journal"
-      rendered_template = Templates::TemplateRenderer.new.render("collection/template.adoc", {
+      rendered_template = @template_renderer.render("collection/template.adoc", {
           :collection_name => collection_name
       })
       begin

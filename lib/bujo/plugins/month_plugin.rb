@@ -2,11 +2,10 @@ module Plugins
   # Own
   require 'bujo/plugins/plugin'
   require 'bujo/options/option'
-  require 'bujo/templates/template_renderer'
   require 'bujo/utils/dates'
 
   class MonthPlugin < Plugin
-    def initialize
+    def initialize(dependencies = [])
       super("month", [
           Options::Option.builder
               .with_name("this-month")
@@ -25,6 +24,8 @@ module Plugins
               .with_action(lambda { |month| create_month(month) })
               .build
       ])
+
+      @template_renderer = dependencies[:template_renderer]
     end
 
     def directory
@@ -50,7 +51,7 @@ module Plugins
     private
 
     def do_create_month(date = Date.today)
-      rendered_template = Templates::TemplateRenderer.new.render("month/template.adoc", {
+      rendered_template = @template_renderer.render("month/template.adoc", {
           :hr_month => Utils::DateUtils.human_readable_month(date),
           :cr_previous_month => Utils::DateUtils.computer_readable_month(date.prev_month),
           :cr_next_month => Utils::DateUtils.computer_readable_month(date.next_month)

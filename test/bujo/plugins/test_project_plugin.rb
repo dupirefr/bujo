@@ -10,7 +10,7 @@ module Plugins
 
   class ProjectPluginTest < Minitest::Test
     def test_directory
-      project_plugin = ProjectPlugin.new
+      project_plugin = ProjectPlugin.new(template_renderer: Templates::TemplateRenderer.new)
 
       assert_equal("projects", project_plugin.directory)
     end
@@ -19,7 +19,7 @@ module Plugins
       execute_in_test_directory(-> (working_directory) {
         create_projects_directory
 
-        project_plugin = ProjectPlugin.new
+        project_plugin = ProjectPlugin.new(template_renderer: Templates::TemplateRenderer.new)
         project_plugin.create_project("House")
 
         project_file_is_created(working_directory, "house")
@@ -30,7 +30,7 @@ module Plugins
       execute_in_test_directory(-> (working_directory) {
         create_projects_directory
 
-        project_plugin = ProjectPlugin.new
+        project_plugin = ProjectPlugin.new(template_renderer: Templates::TemplateRenderer.new)
         project_plugin.create_project("Buy house")
 
         project_file_is_created(working_directory, "buy_house")

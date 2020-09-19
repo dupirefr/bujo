@@ -5,12 +5,13 @@ module Plugins
 
   # Own
   require 'bujo/plugins/collection_plugin'
+  require 'bujo/templates/template_renderer'
 
   require_relative '../test_utils'
 
   class CollectionPluginTest < Minitest::Test
     def test_directory
-      collection_plugin = CollectionPlugin.new
+      collection_plugin = CollectionPlugin.new(template_renderer: Templates::TemplateRenderer.new)
 
       assert_equal("collections", collection_plugin.directory)
     end
@@ -19,7 +20,7 @@ module Plugins
       execute_in_test_directory(-> (working_directory) {
         create_collections_directory
 
-        collection_plugin = CollectionPlugin.new
+        collection_plugin = CollectionPlugin.new(template_renderer: Templates::TemplateRenderer.new)
         collection_plugin.create_collection("Books")
 
         collection_file_is_created(working_directory, "books")
@@ -30,7 +31,7 @@ module Plugins
       execute_in_test_directory(-> (working_directory) {
         create_collections_directory
 
-        collection_plugin = CollectionPlugin.new
+        collection_plugin = CollectionPlugin.new(template_renderer: Templates::TemplateRenderer.new)
         collection_plugin.create_collection("Cafés")
 
         collection_file_is_created(working_directory, "cafes")
@@ -41,7 +42,7 @@ module Plugins
       execute_in_test_directory(-> (working_directory) {
         create_collections_directory
 
-        collection_plugin = CollectionPlugin.new
+        collection_plugin = CollectionPlugin.new(template_renderer: Templates::TemplateRenderer.new)
         collection_plugin.create_collection("Café l'Amour")
 
         collection_file_is_created(working_directory, "cafe_l_amour")

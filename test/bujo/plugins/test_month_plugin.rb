@@ -10,7 +10,7 @@ module Plugins
 
   class MonthPluginTest < Minitest::Test
     def test_directory
-      month_plugin = MonthPlugin.new
+      month_plugin = MonthPlugin.new({template_renderer: Templates::TemplateRenderer.new})
 
       assert_equal("logs", month_plugin.directory)
     end
@@ -20,7 +20,7 @@ module Plugins
         create_logs_directory
 
         Date.stub(:today, Date.strptime("01/09/2020", "%d/%m/%Y")) do
-          month_plugin = MonthPlugin.new
+          month_plugin = MonthPlugin.new({template_renderer: Templates::TemplateRenderer.new})
           month_plugin.create_this_month
 
           this_month_log_file_is_created(working_directory)
@@ -33,7 +33,7 @@ module Plugins
         create_logs_directory
 
         Date.stub(:today, Date.strptime("01/09/2020", "%d/%m/%Y")) do
-          month_plugin = MonthPlugin.new
+          month_plugin = MonthPlugin.new({template_renderer: Templates::TemplateRenderer.new})
           month_plugin.create_next_month
 
           next_month_log_file_is_created(working_directory)
@@ -45,7 +45,7 @@ module Plugins
       execute_in_test_directory(-> (working_directory) {
         create_logs_directory
 
-        month_plugin = MonthPlugin.new
+        month_plugin = MonthPlugin.new({template_renderer: Templates::TemplateRenderer.new})
         month_plugin.create_month("12/2020")
 
         month_log_file_is_created(working_directory)

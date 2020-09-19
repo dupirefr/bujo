@@ -8,10 +8,9 @@ module Plugins
   require 'bujo/plugins/plugin'
   require 'bujo/plugins/plugin_repository'
   require 'bujo/options/option'
-  require 'bujo/templates/template_renderer'
 
   class InitPlugin < Plugin
-    def initialize
+    def initialize(dependencies = [])
       super("init", [
           Options::Option.builder
               .with_name("i", "init")
@@ -19,6 +18,8 @@ module Plugins
               .with_action(-> { init_journal })
               .build
       ])
+
+      @template_renderer = dependencies[:template_renderer]
     end
 
     def init_journal
@@ -26,7 +27,7 @@ module Plugins
       FileUtils.copy(Configuration::Structure.global_asset_path("bujo/bujo.yaml"), Configuration::Structure.local_path("bujo.yaml"))
       Dir.mkdir(Configuration::Structure.sources_path)
 
-      rendered_template = Templates::TemplateRenderer.new.render("init/template.adoc", {})
+      rendered_template = @template_renderer.render("init/template.adoc", {})
       begin
         index_source_path = Configuration::Structure.source_path("index.adoc")
         file = File.open(index_source_path, "w") { |file| file.puts(rendered_template) }
@@ -35,7 +36,7 @@ module Plugins
       end
 
       configuration = Configuration::Configuration.load
-      plugin_repository = PluginRepository.new(configuration)
+      plugin_repository = PluginRepository.new(configuration, @template_renderer)
       plugin_repository.find_all
           .map { |plugin| plugin.directory }
           .select { |directory| not directory.nil? }

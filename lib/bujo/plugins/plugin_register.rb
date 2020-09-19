@@ -10,12 +10,6 @@ module Plugins
       @plugins = plugins
     end
 
-    def self.default
-      PluginRegister.new([
-                             InitPlugin.new
-      ])
-    end
-
     def register(plugin)
       puts "Registering #{plugin.name} plugin..."
       @plugins << plugin

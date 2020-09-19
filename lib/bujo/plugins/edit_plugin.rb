@@ -9,7 +9,7 @@ module Plugins
   require 'bujo/utils/converter'
 
   class EditPlugin < Plugin
-    def initialize(editor = nil)
+    def initialize(dependencies = [], editor = nil)
       super("edition", [
           Options::Option.builder
               .with_name("e", "edit")
