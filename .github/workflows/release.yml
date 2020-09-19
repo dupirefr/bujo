@@ -30,10 +30,12 @@ jobs:
     - name: Build gem
       run: gem build bujo.gemspec
     - name: Publish gem
+      env:
+        GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
       run: |
         touch ~/.gem/credentials
         chmod 600 ~/.gem/credentials
         echo '---\n' >> ~/.gem/credentials
-        echo ':rubygems_api_key: '${{ secrets.GEM_HOST_API_KEY }} >> ~/.gem/credentials
+        echo ':rubygems_api_key: '$GEM_HOST_API_KEY >> ~/.gem/credentials
         cat ~/.gem/credentials
         gem push bujo-*.gem
