@@ -28,7 +28,7 @@ module Plugins
       @editor.call(relative_path)
 
       puts "Converting to HTML..."
-      Utils::Converter.convert_file(relative_path)
+      Utils::Converter.for(relative_path).convert
     end
 
   end

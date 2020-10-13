@@ -35,8 +35,8 @@ module Plugins
     def convert_files
       puts "Converting to HTML..."
       Dir.glob(File.join(Configuration::Structure.sources_path, "**/*"))
-          .select { |file| file =~ /.*\.adoc$/ }
-          .each { |asciidoctor_file| Utils::Converter.convert_file(asciidoctor_file) }
+          .filter { |item| File.file?(item) }
+          .each { |file| Utils::Converter.for(file).convert }
     end
   end
 end

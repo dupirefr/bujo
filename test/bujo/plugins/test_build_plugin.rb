@@ -5,6 +5,7 @@ module Plugins
 
   # Own
   require 'bujo/plugins/build_plugin'
+  require 'bujo/utils/files'
 
   require_relative '../test_utils'
 
@@ -48,6 +49,19 @@ module Plugins
       })
     end
 
+    def test_build_journal_when_non_adoc_file
+      execute_in_test_directory(-> (_) {
+        create_index_file
+        create_non_adoc_file
+
+        build_plugin = BuildPlugin.new
+        build_plugin.build_journal
+
+        index_file_is_created
+        non_adoc_file_has_been_copied
+      })
+    end
+
     private
 
     def create_index_file
@@ -58,6 +72,11 @@ module Plugins
     def create_log_file
       FileUtils.mkdir("src/logs")
       FileUtils.touch("src/logs/2020-09-01.adoc")
+    end
+
+    def create_non_adoc_file
+      FileUtils.touch("src/notes.txt")
+      Utils::Files.write("src/notes.txt", "Notes")
     end
 
     def create_target_with_garbage
@@ -71,6 +90,13 @@ module Plugins
 
     def log_file_is_created
       file_is_created("target/logs/2020-09-01.html")
+    end
+
+    def non_adoc_file_has_been_copied
+      file_is_created("target/notes.txt")
+      original_file_content = File.read("src/notes.txt")
+      copied_file_content = File.read("target/notes.txt")
+      assert_equal(original_file_content, copied_file_content)
     end
 
     def file_is_created(file_path)
