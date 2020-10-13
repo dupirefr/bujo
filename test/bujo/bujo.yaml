@@ -1,0 +1,7 @@
+plugins:
+  - day
+  - month
+  - project
+  - collection
+  - edit
+editor: vim
